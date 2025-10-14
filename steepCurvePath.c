@@ -64,17 +64,20 @@ void updateDistance(int h, int k, double edgeLenght, int prevH, int prevK, point
 
 int main() {
     // Parameters setup
-    double a = 180.0 / (double)K;       // angle of K subdivisions
+    double a = PI / (double)K;       // angle of K subdivisions
     double t[H];                        // lenght of vertical edges (on the direction of the circumference, one for each h distance from the center)
     double d[H-1];                      // lenght of the diagonal edges (one for each trapezoid)
-    double l = (double)(O - I) / 2.0;   // lenght of the radial edges (it's always the same)
+    double l = (double)(O - I) / H;   // lenght of the radial edges (it's always the same)
     
+//    printf("l: %f\n",l);
     // Computing edges lenght
     for (int i = 0; i < H; i++) {
         t[i] = 2 * (I + l*i) * sin(a / 2);
+//        printf("t[%d]: %f\n",i,t[i]);
     }
     for (int i = 0; i < H - 1; i++) {
         d[i] = sqrt(l*l + t[i]*t[i] + 2*t[i]*l*sin(a / 2));
+//        printf("d[%d]: %f\n",i,d[i]);
     }
 
     // Setup graph structure (Dijkstra)
@@ -153,7 +156,7 @@ int main() {
 
     printf("Total path lenght: %fm\n",graph[K-1][H-1].distance);
     printf("Path:");
-    for (int j=0; j<i; j++) {
+    for (int j=i; j >= 0; j--) {
         printf(" (%d,%d)",path[j].k, path[j].h);
     }
     printf("\n");
