@@ -21,7 +21,6 @@
 #define FALSE 0
 #define TRUE 1
 #define PI 3.14
-#define INFINITY (2.0*PI*O)       // we pose infinity as the outer circumference, worst case path is half of it
 
 /// point
 typedef struct coords {
@@ -36,13 +35,15 @@ typedef struct point {
 } point;
 
 /// Retrives the index of the point with minimum distance from the source
-int selectMinDist(point graph[K*H]) {
+int selectMinDist(point graph[K][H]) {
     double minDist = INFINITY;
     int minDistIdx = UNDEF;
 
-    for (int i=0; i<K*H; i++) {
-        if (graph[i].distance < minDist) {
-            minDistIdx = i;
+    for (int i = 0; i < K; i++) {
+        for (int j = 0; j < H; j++) {
+            if (graph[i][j].distance < minDist) {
+                minDistIdx = i * H + j;
+            }
         }
     }
 
@@ -153,7 +154,7 @@ int main() {
     printf("Total path lenght: %fm\n",graph[K-1][H-1].distance);
     printf("Path:");
     for (int j=0; j<i; j++) {
-        printf(" (%d,%d)",path[i].k, path[i].h);
+        printf(" (%d,%d)",path[j].k, path[j].h);
     }
     printf("\n");
 
