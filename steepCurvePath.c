@@ -41,8 +41,9 @@ int selectMinDist(point graph[K][H]) {
 
     for (int i = 0; i < K; i++) {
         for (int j = 0; j < H; j++) {
-            if (graph[i][j].distance < minDist) {
+            if (!graph[i][j].traversed && graph[i][j].distance < minDist) {
                 minDistIdx = i * H + j;
+                minDist = graph[i][j].distance;
             }
         }
     }
@@ -54,6 +55,10 @@ int selectMinDist(point graph[K][H]) {
 }
 
 void updateDistance(int h, int k, double edgeLenght, int prevH, int prevK, point graph[K][H]) {
+    if (graph[k][h].traversed) {
+        return;
+    }
+
     double updatedDistance = graph[prevK][prevH].distance + edgeLenght;
     if (updatedDistance < graph[k][h].distance) {
         graph[k][h].distance = updatedDistance;
@@ -142,10 +147,11 @@ int main() {
     // Given we know the structure of the graph, we can assume that the number of points
     // traversed with always be lower than K*2 by a large margin... (unproven, but plausible)
     coords path[K*2];
-    int h = H-1, k = K-1;
+    int targetH = H-1, targetK = K-1;
     int i = 0;
-    path[i].k = k;
-    path[i].h = h;
+    path[i].k = targetK;
+    path[i].h = targetH;
+    int h = targetH, k = targetK;
     while (graph[k][h].prev.h != UNDEF) {
         i++;
         path[i].h = graph[k][h].prev.h;
@@ -154,7 +160,7 @@ int main() {
         k = path[i].k;
     }
 
-    printf("Total path lenght: %fm\n",graph[K-1][H-1].distance);
+    printf("Total path lenght: %fm\n",graph[targetK][targetH].distance);
     printf("Path:");
     for (int j=i; j >= 0; j--) {
         printf(" (%d,%d)",path[j].k, path[j].h);
