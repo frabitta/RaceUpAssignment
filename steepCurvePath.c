@@ -69,10 +69,10 @@ void updateDistance(int h, int k, double edgeLenght, int prevH, int prevK, point
 
 int main() {
     // Parameters setup
-    double a = PI / (double)K;       // angle of K subdivisions
+    double a = PI / (double)(K-1);       // angle of K subdivisions
     double t[H];                        // lenght of vertical edges (on the direction of the circumference, one for each h distance from the center)
     double d[H-1];                      // lenght of the diagonal edges (one for each trapezoid)
-    double l = (double)(O - I) / H;   // lenght of the radial edges (it's always the same)
+    double l = (double)(O - I) / (H-1);   // lenght of the radial edges (it's always the same)
     
 //    printf("l: %f\n",l);
     // Computing edges lenght
