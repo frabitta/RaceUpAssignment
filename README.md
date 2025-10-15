@@ -7,6 +7,11 @@ To compile the code, run the makefile or run the command:
 gcc -std=c99 -Wall -Wpedantic -Werror steepCurvePath.c -o steepCurvePath.exe -lm
 ```
 
+And execute it by simply calling `steepCurvePath.exe`:
+```
+./steepCurvePath.exe
+```
+
 ## Structure of the program
 The source file is `steepCurvePath.c`, which contains the main function and all the necessary functions to solve the problem.
 
@@ -37,4 +42,5 @@ The program outputs the minimum distance to reach the end of the curve and print
 
 ## Comments
 My implementation, given the parameters (H=5 and K=14), proposes a different path than the one provided in the assignment. However, measuring the difference between the two paths, it shows that for my implementation the path can be 1.84mm shorter, equivalent to the 0.007% of the total length of the path.
+
 
