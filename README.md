@@ -23,7 +23,7 @@ Given the structure of the problem, we represent the graph as a grid of nodes di
 
 ![Grid image](https://github.com/frabitta/RaceUpAssignment/blob/main/media/SmartSelect_20251015_171803_Samsung%20Notes.jpg)
 
-Each node is connected to its adjacent nodes by edges, which can be horizontal, vertical or diagonal.
+Each node is connected to its adjacent ones by horizontal, vertical or diagonal edges.
 Given the regularity of the structure, a lot of the edges have the same lenght, so we can compute them once and use them multiple times. In the image a representation of the edges of equal lenght by color:
 
 ![Edges image](https://github.com/frabitta/RaceUpAssignment/blob/main/media/SmartSelect_20251015_171929_Samsung%20Notes.jpg)
@@ -35,12 +35,13 @@ Since we know the parameteres, in the first part of the program we compute the l
 
 ### Dijkstra algorithm
 The Dijkstra algorithm is implemented by analyzing the available edges from the current node and updating the distance to the adjacent nodes if a shorter path is found. Since the number of nodes is not very high, we use a simple array to keep track of the visited nodes and the distances, instead of using a priority queue.
-The algorithm continues until all nodes have been visited or the destination node has been reached.
+The algorithm continues until all nodes have been visited.
 
 ### Output
 The program outputs the minimum distance to reach the end of the curve and prints the entire path.
 
 ## Comments
-My implementation, given the parameters (H=5 and K=14), proposes a different path than the one provided in the assignment. However, measuring the difference between the two paths, it shows that for my implementation the path can be 1.84mm shorter, equivalent to the 0.007% of the total length of the path.
+My implementation, given the parameters (H=5 and K=14), proposes a different path than the one provided in the assignment. However, measuring the difference lengths of the two paths, it shows that for my implementation the path can be 1.84mm shorter, equivalent to the 0.007% of the total length of it.
+
 
 
